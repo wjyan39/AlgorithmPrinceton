@@ -3,8 +3,8 @@ package PartI.BasicDS;
 import java.util.Iterator;
 import java.util.NoSuchElementException; 
 
-// generic stack impelementation, supporting iterator, i.e. for-each loop.
-public class Stack<MyItem> implements Iterable<MyItem> {
+// generic stack impelementation via linked list, supporting iterator, i.e. for-each loop.
+public class StackOfLinkedList<MyItem> implements Iterable<MyItem> {
     
     private Node<MyItem> first;  // top of the stack 
     private int n;             // size of stack
@@ -15,7 +15,7 @@ public class Stack<MyItem> implements Iterable<MyItem> {
         private Node<MyItem> next; 
     }
 
-    public Stack() {
+    public StackOfLinkedList() {
         first = null;
         n = 0;
     }
@@ -90,8 +90,8 @@ public class Stack<MyItem> implements Iterable<MyItem> {
     }
 
     public static void main(String[] args) {
-        Stack<String> stack = new Stack<String>();
-        while (!.isEmpty()) {
+        StackOfLinkedList<String> stack = new StackOfLinkedList<String>();
+        while (!stack.isEmpty()) {
             String item = StdIn.readString();
             if (!item.equals("-")) {
                 stack.push(item);
