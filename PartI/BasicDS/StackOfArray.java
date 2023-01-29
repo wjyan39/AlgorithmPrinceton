@@ -49,7 +49,35 @@ public class StackOfArray <Item> implements Iterable<Item>{
         return s[N];
     }
 
-    
+    private class ArrayIterator<Item> implements Iterator<Item>{
+        private int current;
 
+        public ArrayIterator(int n) {
+            current = n;
+        }
+
+        public boolean hasNext() {
+            return current > 0;
+        }
+
+        public Item next() {
+            // Reverse order iteration
+            Item item = s[--current];
+            return item;
+        }
+    } 
+
+    public Iterator<Item> iterator() {
+        return new ArrayIterator<Item>(N);
+    }
+
+    public String toString() {
+        StringBuilder str = new StringBuilder();
+        for (Item item : this) {
+            str.append(item);
+            str.append(' ');
+        }
+        return s.toString();
+    }
 
 }
