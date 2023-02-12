@@ -5,10 +5,11 @@ public class Selection {
         return v.compareTo(w) < 0;
     }
 
-    private static void swap(Comparable [] a, int i, int j){
+    private static void swap(Comparable [] a, int i, int j) {
         Comparable item = a[i];
         a[i] = a[j];
         a[j] = item;
+    }
     
     public static void sort(Comparable [] a) {
         int N = a.length;
