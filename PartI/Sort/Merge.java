@@ -37,7 +37,7 @@ public class Merge {
 
     private static void sort(Comparable [] a, Comparable [] aux, int lo, int hi) {
         if (hi <= lo) return;
-        if (hi <= lo + CUTOFF -1) {
+        if (hi <= lo+CUTOFF-1) {
             // for small subarrays, use insertion sort or other alternatives
             Insertion.sort(a, lo, hi);
             return;
@@ -84,6 +84,4 @@ public class Merge {
         improvedsort(a, aux, 0, a.length-1);
 
     }
-
-    
 }
