@@ -1,12 +1,14 @@
+package PartI.BasicDS;
+
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class QueueOfLinkedList<Item> implements Iterable<Item> {
+public class Queue<Item> implements Iterable<Item> {
     private Node<Item> head;
     private Node<Item> tail;
     private int n;
 
-    private class Node<Item> {
+    private static class Node<Item> {
         private Item item;
         private Node<Item> next;
         
@@ -16,34 +18,36 @@ public class QueueOfLinkedList<Item> implements Iterable<Item> {
         }
     }
     
-    public QueueOfLinkedList() {
-        head = new Node();
-        tail = new Node();
+    public Queue() {
+        head = null;
+        tail = null;
         n = 0;
     }
 
     public boolean isEmpty() {
-        return n == 0;
+        return head == null;
     }
 
     public int size() {
         return n;
     }
 
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Queue underflow");
+        return head.item;
+    }
+
     public void enqueue(Item item) {
-        if (isEmpty()) {
-            head.item = item;
-            tail = head;
-        } else {
-            tmp = new Node(item);
-            tail.next = tmp;
-            tail = tail.next;
-        }
+        // ensure FIFO
+        Node<Item> oldtail = tail;
+        tail = new Node<Item>(item);
+        if (isEmpty()) head = tail;
+        else           oldtail.next = tail;
         n++;
     }
 
     public Item dequeue() {
-        if (isEmpty()) throw NoSuchElementException;
+        if (isEmpty()) throw new NoSuchElementException();
         
         Item ret = head.item;
         head = head.next;
@@ -54,10 +58,10 @@ public class QueueOfLinkedList<Item> implements Iterable<Item> {
         return ret;
     }
 
-    private class ListIterator<Item> implements Iterator<Item> {
+    private class ListIterator implements Iterator<Item> {
         private Node<Item> current; 
 
-        public ListIterator(Node<MyItem> head){
+        public ListIterator(Node<Item> head){
             current = head;
         }
 
@@ -78,8 +82,16 @@ public class QueueOfLinkedList<Item> implements Iterable<Item> {
     }
 
     public Iterator<Item> iterator() {
-        return new ListIterator<Item>(this.head);
+        return new ListIterator(this.head);
     }
 
+    public String toString() {
+        StringBuilder s = new StringBuilder();
+        for (Item item:this) {
+            s.append(item);
+            s.append(" ");
+        }
+        return s.toString();
+    }
 
 }

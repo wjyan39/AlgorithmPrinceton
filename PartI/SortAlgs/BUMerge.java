@@ -1,3 +1,5 @@
+package PartI.SortAlgs;
+
 public class BUMerge {
 /* Bottom-up Merge Sort */	
 	private static Comparable [] aux;

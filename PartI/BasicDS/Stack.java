@@ -4,18 +4,18 @@ import java.util.Iterator;
 import java.util.NoSuchElementException; 
 
 // generic stack impelementation via linked list, supporting iterator, i.e. for-each loop.
-public class StackOfLinkedList<MyItem> implements Iterable<MyItem> {
+public class Stack<Item> implements Iterable<Item> {
     
-    private Node<MyItem> first;  // top of the stack 
+    private Node<Item> first;  // top of the stack 
     private int n;             // size of stack
 
-    private static class Node<MyItem> {
+    private static class Node<Item> {
         // inner node class, Linked List style
-        private MyItem item;
-        private Node<MyItem> next; 
+        private Item item;
+        private Node<Item> next; 
     }
 
-    public StackOfLinkedList() {
+    public Stack() {
         first = null;
         n = 0;
     }
@@ -34,38 +34,39 @@ public class StackOfLinkedList<MyItem> implements Iterable<MyItem> {
         return n;
     } 
 
-    public void push(MyItem item) {
-        Node<MyItem> oldfirst = first;
-        first = new Node<MyItem>();
+    public void push(Item item) {
+        Node<Item> oldfirst = first;
+        first = new Node<Item>();
         first.item = item;
         first.next = oldfirst;
         n++;
     }
 
-    public MyItem pop() {
-        MyItem item = first.item;
+    public Item pop() {
+        Item item = first.item;
         first = first.next;
         n --;
         return item;
     }
 
-    public MyItem peek() {
+    public Item peek() {
+        if (isEmpty()) throw new NoSuchElementException("Stack underflow");
         return first.item; 
     }
 
     public String toString() {
         StringBuilder s = new StringBuilder();
-        for (MyItem item : this) {
+        for (Item item : this) {
             s.append(item);
             s.append(' ');
         }
         return s.toString();
     }
 
-    private class ListIterator<MyItem> implements Iterator<MyItem> {
-        private Node<MyItem> current; 
+    private class ListIterator implements Iterator<Item> {
+        private Node<Item> current; 
 
-        public ListIterator(Node<MyItem> first){
+        public ListIterator(Node<Item> first){
             current = first;
         }
 
@@ -73,9 +74,9 @@ public class StackOfLinkedList<MyItem> implements Iterable<MyItem> {
             return current != null;
         }
 
-        public MyItem next() {
+        public Item next() {
             if (!hasNext()) throw new NoSuchElementException(); 
-            MyItem item = current.item;
+            Item item = current.item;
             current = current.next;
             return item;
         }
@@ -85,12 +86,12 @@ public class StackOfLinkedList<MyItem> implements Iterable<MyItem> {
         }
     }
 
-    public Iterator<MyItem> iterator() {
-        return new ListIterator<MyItem>(first);
+    public Iterator<Item> iterator() {
+        return new ListIterator(first);
     }
 
     public static void main(String[] args) {
-        StackOfLinkedList<String> stack = new StackOfLinkedList<String>();
+        Stack<String> stack = new Stack<String>();
         while (!stack.isEmpty()) {
             String item = StdIn.readString();
             if (!item.equals("-")) {

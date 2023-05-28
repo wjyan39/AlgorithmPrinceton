@@ -1,7 +1,21 @@
-package PartI.Sort;
+package PartI.SortAlgs;
+
+import java.util.Comparator;
 
 public class Insertion {
     // Object should have Comparable implemented 
+
+    private Insertion() { }
+
+    public static void sort(Comparable[] a) {
+        int n = a.length;
+        for (int i=1; i < n; i++) {
+            for (int j=i; j > 0 && less(a[j], a[j-1]); j--) {
+                swap(a, j, j-1);
+            }
+        }
+    }
+
     public static void sort(Comparable [] a, int lo, int hi) {
         for (int i=lo; i <= hi; i++) {
             for (int j=i; j > 0; j--) {

@@ -1,3 +1,5 @@
+package PartI.BasicDS;
+
 import java.util.Iterator;
 
 public class StackOfArray <Item> implements Iterable<Item>{
@@ -49,7 +51,7 @@ public class StackOfArray <Item> implements Iterable<Item>{
         return s[N];
     }
 
-    private class ArrayIterator<Item> implements Iterator<Item>{
+    private class ArrayIterator implements Iterator<Item> {
         private int current;
 
         public ArrayIterator(int n) {
@@ -68,7 +70,7 @@ public class StackOfArray <Item> implements Iterable<Item>{
     } 
 
     public Iterator<Item> iterator() {
-        return new ArrayIterator<Item>(N);
+        return new ArrayIterator(N);
     }
 
     public String toString() {
