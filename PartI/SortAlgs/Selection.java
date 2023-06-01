@@ -1,4 +1,4 @@
-package PartI.Sort;
+package PartI.SortAlgs;
 
 public class Selection {
     private static boolean less(Comparable v, Comparable w) {

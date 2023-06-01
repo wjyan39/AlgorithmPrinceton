@@ -1,7 +1,10 @@
 package PartI.BasicDS;
 
 import java.util.Iterator;
-import java.util.NoSuchElementException; 
+import java.util.NoSuchElementException;
+
+import Utility.StdIn;
+import Utility.StdOut;
 
 // generic stack impelementation via linked list, supporting iterator, i.e. for-each loop.
 public class Stack<Item> implements Iterable<Item> {
@@ -100,7 +103,7 @@ public class Stack<Item> implements Iterable<Item> {
             else if (!stack.isEmpty()) {
                 StdOut.print(stack.pop() + " ");
             }
-            System.println("(" + stack.size() + " left on stack.");
+            StdOut.println("(" + stack.size() + " left on stack.");
         }
     }
 

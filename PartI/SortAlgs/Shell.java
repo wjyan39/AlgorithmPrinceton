@@ -1,4 +1,4 @@
-package PartI.Sort;
+package PartI.SortAlgs;
 public class Shell {
     private static boolean less(Comparable v, Comparable w) {
         return v.compareTo(w) < 0;

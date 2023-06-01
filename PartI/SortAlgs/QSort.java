@@ -1,6 +1,6 @@
-package PartI.Sort;
+package PartI.SortAlgs;
 
-import java.util.Collections;
+import Utility.StdRandom;
 
 public class QSort {
     private static int partition(int [] a, int lo, int hi) {
@@ -44,7 +44,7 @@ public class QSort {
 
     public static void sort(int [] a) {
         int N = a.length;
-        Collections.shuffle(a);
+        StdRandom.shuffle(a);
         sort(a, 0, N-1);
     }
 
@@ -59,7 +59,7 @@ public class QSort {
                 i++;
             } else if (less(cur_key, a[i])) {
                 swap(a, i, right);
-                right --;
+                right--;
             } else {
                 i++;
             }
