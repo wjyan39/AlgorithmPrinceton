@@ -14,7 +14,7 @@ public class ImproveUF {
         }
     }
 
-    void union(int p, int q) {
+    public void union(int p, int q) {
         // weighted quick union of two tree structure 
         // let one with smaller size be the child of the other 
         int proot = root(p);
@@ -40,7 +40,7 @@ public class ImproveUF {
         return i; 
     }
 
-    boolean isConnected(int p, int q) {
+    public boolean isConnected(int p, int q) {
         return root(p) == root(q);
     }
 
